@@ -1,0 +1,7 @@
+[
+  { "id": 1, "title": "Internet", "amount": 50 },
+  { "id": 2, "title": "Rent", "amount": 600 },
+  { "id": 3, "title": "Groceries", "amount": 150 },
+  { "id": 4, "title": "Coffee", "amount": 15 },
+  { "id": 5, "title": "Gym", "amount": 90 }
+]

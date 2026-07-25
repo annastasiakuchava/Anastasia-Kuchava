@@ -1,0 +1,11 @@
+{
+  "name": "weather-cli",
+  "version": "1.0.0",
+  "type": "module",
+  "bin": {
+    "weather-cli": "./index.js"
+  },
+  "dependencies": {
+    "commander": "^12.0.0"
+  }
+}

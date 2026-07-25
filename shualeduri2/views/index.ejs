@@ -1,0 +1,57 @@
+<%- include('partials/header') %>
+
+<h2>დამატება</h2>
+<form action="/api/expenses" method="POST">
+    <input type="text" name="title" placeholder="დასახელება" required>
+    <input type="number" name="amount" placeholder="თანხა" required>
+    <input type="text" name="category" placeholder="კატეგორია" required>
+    <button type="submit">დამატება</button>
+</form>
+
+<hr>
+
+<h2>ფილტრი</h2>
+<form action="/" method="GET">
+    <input type="text" name="category" placeholder="კატეგორია..." value="<%= currentSearch %>">
+    <button type="submit">Search</button>
+    <% if(currentSearch) { %>
+        <a href="/"><button type="button">გასუფთავება</button></a>
+    <% } %>
+</form>
+
+<h2>სია</h2>
+<table>
+    <thead>
+        <tr>
+            <th>დასახელება</th>
+            <th>თანხა</th>
+            <th>კატეგორია</th>
+            <th>მოქმედება</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% expenses.forEach(expense => { %>
+            <tr>
+                <td><a href="/expense/<%= expense.id %>"><%= expense.title %></a></td>
+                <td><%= expense.amount %> ₾</td>
+                <td><%= expense.category %></td>
+                <td>
+                    <button onclick="deleteExpense('<%= expense.id %>')">წაშლა</button>
+                </td>
+            </tr>
+        <% }) %>
+    </tbody>
+</table>
+
+<script>
+    async function deleteExpense(id) {
+        if(confirm('დარწმუნებული ხართ?')) {
+            const res = await fetch(`/api/expenses/${id}`, { method: 'DELETE' });
+            if(res.ok) {
+                window.location.reload();
+            }
+        }
+    }
+</script>
+
+<%- include('partials/footer') %>
